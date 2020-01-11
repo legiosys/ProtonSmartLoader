@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/bin/Debug
+/bin/Release/Proton Smart Loader.pdb
+/bin/Release/Proton Smart Loader.exe.config
+/obj
