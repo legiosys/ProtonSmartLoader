@@ -39,6 +39,7 @@ namespace Proton_Loader.Services
                 var row = GetRow(rowIndex);
                 var userFields = BuildUserFields(row.Where(x => headers.Any(y => y.Key == x.Key)));
                 var outRow = $"{_sheet.Cells[rowIndex, name].Value};0;;;;{userFields};{row[id]};{templ.Name};;0;0;0;0;0;3;3;0;{row[barcode]};0;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;";
+                var cnt = outRow.Count(x => x.Equals(';'));
                 await writer.WriteLineAsync(outRow);
             }
             await writer.FlushAsync();
@@ -54,7 +55,7 @@ namespace Proton_Loader.Services
             {
                 result += $"{cell.Value};";
             }
-            for (int j = 0; j < 30 - ColumnsCount + 2; j++)
+            for (int j = 0; j < 30 - ColumnsCount + 1; j++)
                 result += ";";
 
             return result;
@@ -64,7 +65,7 @@ namespace Proton_Loader.Services
         {
             var result = new Dictionary<int, string>();
             for (int c = 1; c <= ColumnsCount; c++)
-                result.Add(c, _sheet.Cells[rowIndex, c].Value.ToString().Trim());
+                result.Add(c, _sheet.Cells[rowIndex, c].Value?.ToString().Trim());
             return result;
         }
     }

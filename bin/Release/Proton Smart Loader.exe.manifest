@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Proton Smart Loader.exe" size="99800">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Proton Smart Loader.exe" size="100312">
       <assemblyIdentity name="Proton Smart Loader" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PuN5z0u42tqcNSFidMdsSdxxem2Nm+OT1lmL7Vhdxc8=</dsig:DigestValue>
+        <dsig:DigestValue>OzSkV1SztCWaIaN3VATvR5YVbwFz/uP58sTtBp27gbc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
