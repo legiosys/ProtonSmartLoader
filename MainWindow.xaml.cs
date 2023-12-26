@@ -13,7 +13,8 @@ namespace Proton_Loader
     {
         OpenFileDialog ofd = new OpenFileDialog();
         SaveFileDialog sfd = new SaveFileDialog();
-
+        
+        
         private ExcelProvider _excelProvider;
         public MainWindow()
         {
@@ -59,17 +60,23 @@ namespace Proton_Loader
             ofd.Filter = "Excel Files(*.xls;*.xlsx)|*.xls;*.xlsx";
             ofd.ShowDialog();
             lbl_open.Content = "Загрузка файла...";
-
-            _excelProvider = new ExcelProvider(ofd.FileName);
-            var headers = _excelProvider.GetHeaders();
-            lbl_open.Content = ofd.FileName;
-            //подстановка соурса в комбобоксы и выбор(если имена столбцов по-умолчанию) необходимых значений
-            cb_name.ItemsSource = headers;
-            cb_name.SelectedItem = headers.FirstOrDefault(x => x.Value.Equals("Наименование"));
-            cb_id.ItemsSource = headers;
-            cb_id.SelectedItem = headers.FirstOrDefault(x => x.Value.Equals("Idtovar")); 
-            cb_barcode.ItemsSource = headers;
-            cb_barcode.SelectedItem = headers.FirstOrDefault(x => x.Value.Equals("Barcode"));
+            try
+            {
+                _excelProvider = new ExcelProvider(ofd.FileName);
+                var headers = _excelProvider.GetHeaders();
+                lbl_open.Content = ofd.FileName;
+                //подстановка соурса в комбобоксы и выбор(если имена столбцов по-умолчанию) необходимых значений
+                cb_name.ItemsSource = headers;
+                cb_name.SelectedItem = headers.FirstOrDefault(x => Equals(x.Value, "Наименование"));
+                cb_id.ItemsSource = headers;
+                cb_id.SelectedItem = headers.FirstOrDefault(x => Equals(x.Value, "Idtovar"));
+                cb_barcode.ItemsSource = headers;
+                cb_barcode.SelectedItem = headers.FirstOrDefault(x => Equals(x.Value, "Barcode"));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e) //диалог сохранения
